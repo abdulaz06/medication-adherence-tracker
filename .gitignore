@@ -205,3 +205,39 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# =========================
+# Flutter / Dart
+# =========================
+.dart_tool/
+.build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+pubspec.lock
+
+# Flutter build outputs
+build/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Generated.xcconfig
+ios/Flutter/app.flx
+ios/Flutter/app.zip
+ios/Flutter/flutter_export_environment.sh
+
+# Android build artifacts
+android/.gradle/
+android/app/build/
+android/build/
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
