@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.db import get_db
 from app.models.item import Item
-from app.schemas.item import ItemCreate, ItemOut
+from app.schemas.item import ItemCreate, ItemUpdate, ItemOut
 
 router = APIRouter(prefix="/items", tags=["items"])
 
@@ -30,6 +30,21 @@ def get_item(item_id: int, db: Session = Depends(get_db)):
     return item
 
 
+@router.patch("/{item_id}", response_model=ItemOut)
+def update_item(item_id: int, payload: ItemUpdate, db: Session = Depends(get_db)):
+    item = db.get(Item, item_id)
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    data = payload.model_dump(exclude_unset=True)
+    for k, v in data.items():
+        setattr(item, k, v)
+
+    db.commit()
+    db.refresh(item)
+    return item
+
+
 @router.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_item(item_id: int, db: Session = Depends(get_db)):
     item = db.get(Item, item_id)
@@ -37,3 +52,4 @@ def delete_item(item_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Item not found")
     db.delete(item)
     db.commit()
+    return

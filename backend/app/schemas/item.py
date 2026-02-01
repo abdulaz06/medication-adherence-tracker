@@ -1,32 +1,33 @@
-from pydantic import BaseModel
-from typing import Optional
+from pydantic import BaseModel, Field
+from typing import Optional, Literal
 
-class ItemCreate(BaseModel):
+
+class ItemBase(BaseModel):
     user_id: int
-    name: str
-    type: str
-    doses_per_day: int = 1
-    schedule_days: int = 127
-    notes: Optional[str] = None
+    name: str = Field(min_length=1, max_length=120)
+    type: Literal["medication", "supplement"]
+    doses_per_day: int = Field(ge=1, le=24, default=1)
+    schedule_days: int = Field(ge=0, le=127, default=127)
+    notes: Optional[str] = Field(default=None, max_length=255)
     active: bool = True
 
+
+class ItemCreate(ItemBase):
+    pass
+
+
 class ItemUpdate(BaseModel):
-    name: Optional[str] = None
-    type: Optional[str] = None
-    doses_per_day: Optional[int] = None
-    schedule_days: Optional[int] = None
-    notes: Optional[str] = None
+    # all optional for PATCH
+    name: Optional[str] = Field(default=None, min_length=1, max_length=120)
+    type: Optional[Literal["medication", "supplement"]] = None
+    doses_per_day: Optional[int] = Field(default=None, ge=1, le=24)
+    schedule_days: Optional[int] = Field(default=None, ge=0, le=127)
+    notes: Optional[str] = Field(default=None, max_length=255)
     active: Optional[bool] = None
 
-class ItemOut(BaseModel):
+
+class ItemOut(ItemBase):
     id: int
-    user_id: int
-    name: str
-    type: str
-    doses_per_day: int
-    schedule_days: int
-    notes: Optional[str] = None
-    active: bool
 
     class Config:
         from_attributes = True
