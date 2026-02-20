@@ -20,3 +20,9 @@ class Item(Base):
     active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
     user: Mapped["User"] = relationship("User", back_populates="items")
+
+    dose_logs: Mapped[list["DoseLog"]] = relationship(
+        "DoseLog",
+        back_populates="item",
+        cascade="all, delete-orphan"
+    )

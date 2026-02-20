@@ -14,3 +14,9 @@ class User(Base):
         back_populates="user",
         cascade="all, delete-orphan"
     )
+
+    dose_logs: Mapped[list["DoseLog"]] = relationship(
+        "DoseLog",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )
