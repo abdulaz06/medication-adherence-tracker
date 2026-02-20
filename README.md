@@ -279,8 +279,8 @@ medication-adherence-tracker/
 ---
 
 ## Authors
-Abdul Azeem Asharaf Ali
-Shravani Pradeep Bhase
+- Abdul Azeem Asharaf Ali
+- Shravani Pradeep Bhase
 Built as a collaborative project by two CS majors using pair programming (driver/navigator model).
 
 ---
