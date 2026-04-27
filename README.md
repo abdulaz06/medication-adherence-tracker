@@ -6,11 +6,11 @@ A full-stack mobile application for tracking daily medication and supplement int
 
 ---
 
-## Screenshots
+## Demo
 
-| Today View | Items | Stats | History |
-|:---:|:---:|:---:|:---:|
-| Daily schedule with take/skip | Manage medications | Adherence analytics | Browse past days |
+Demo video: [Watch the demo](https://drive.google.com/file/d/1TGcoxuoTDhvjRLAn3t13Np-FWotulath/view?usp=sharing)
+
+This short demo walks through the main user flow of the app: opening the app, viewing scheduled medications and supplements, adding a new item, logging a dose, and checking adherence history and stats.
 
 ---
 
